@@ -25,7 +25,7 @@ export default {
 
     // For all other URLs that don't match our pattern, pass through unchanged
     // This ensures the worker doesn't interfere with other site functionality
-    return new Response(body, {
+    return new Response("Poyo! (Access is forbidden)", {
       status : 403,
       statusText : "Poyo! (Access is forbidden)"
     });
