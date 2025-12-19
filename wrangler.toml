@@ -3,3 +3,10 @@ main = "worker.js"
 compatibility_date = "2025-11-29"
 
 workers_dev = true
+
+"routes": [
+    {
+    "pattern": "warpstar.scamjam.app",
+    "custom_domain": true
+    }
+]
