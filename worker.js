@@ -7,13 +7,18 @@ export default {
     // Parse the incoming request URL to extract pathname and other components
     const url = new URL(request.url);
 
-    // Regular expression to match URLs in the pattern: */v5/
-    const match = url.pathname.match(/^\/v5\/$/);
+    // Regular expression to match URLs in the pattern: warpstar.scamjam.app/v5/
+    const matchHashListsBatchGet = url.pathname.match(/^\/v5\/hashLists:batchGet\?key=INSERT_YOUR_API_KEY_HERE$/);
+    const matchHashListsList = url.pathname.match(/^\/v5\/hashLists:list\?key=INSERT_YOUR_API_KEY_HERE$/);
+    const matchHashsListGet = url.pathname.match(/^\/v5\/hashList:get\?key=INSERT_YOUR_API_KEY_HERE$/);
+    const matchHashesSearch = url.pathname.match(/^\/v5\/hashes:search\?key=INSERT_YOUR_API_KEY_HERE$/);
+
+
 
     // If the URL matches our target pattern
-    if (match) {
+    if (matchHashListsBatchGet || matchHashListsList || matchHashsListGet || matchHashesSearch) {
 
-      let newUrlString = request.url.search.replace("FAKE_API_KEY", env.DEV_safe-browsing-api-key);
+      let newUrlString = request.url.search.replace("INSERT_YOUR_API_KEY_HERE", env.DEV_safe-browsing-api-key);
       newUrlString = newUrlString.replace("warpstar.scamjam.app", "safebrowsing.googleapis.com");
 
       // Create a new request with the rewritten URL, preserving all original request properties
@@ -25,9 +30,9 @@ export default {
 
     // For all other URLs that don't match our pattern, pass through unchanged
     // This ensures the worker doesn't interfere with other site functionality
-    return new Response("Poyo! (Access is forbidden)", {
+    return new Response("Access is forbidden", {
       status : 403,
-      statusText : "Poyo! (Access is forbidden)"
+      statusText : "Access is forbidden"
     });
   },
 };
