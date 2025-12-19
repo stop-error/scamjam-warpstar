@@ -1,4 +1,4 @@
-name = "warpstar"
+name = "scamjam-warpstar"
 main = "worker.js"
 compatibility_date = "2025-11-29"
 
